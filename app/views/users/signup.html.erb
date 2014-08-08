@@ -1,2 +1,37 @@
-<h1>Users#signup</h1>
-<p>Find me in app/views/users/signup.html.erb</p>
+<div>
+<h3>新用户注册</h3>
+  <%= form_for @user ,url:{action:'create'} do |f|%>
+  <div>
+    <dl>
+      <dt><%=f.label '帐号'%></dt>
+      <dd><%= f.text_field :login %></dd>
+    </dl>
+    <dl>
+      <dt><%=f.label '请设置密码'%></dt>
+      <dd><%= f.text_field :password %></dd>
+    </dl>
+    <dl>
+      <dt><%=f.label '请确认密码'%></dt>
+      <dd><%= f.text_field :password_confirmation %></dd>
+    </dl>
+    <dl>
+      <dt><%=f.label '忘记密码问题'%></dt>
+      <dd><%= f.text_field :question_of_password %></dd>
+    </dl>
+    <dl>
+      <dt><%=f.label '忘记密码答案'%></dt>
+      <dd><%= f.text_field :answer_of_password %></dd>
+    </dl>
+<p>
+  <%= f.submit '注册'%>
+</p>
+  </div>
+  <% end %>
+  <div class="boxed-group-inner">
+    <% if @user.errors.any? %>
+        <div class="form_errorred">
+          <%= @user.errors.full_messages.first %>
+        </div>
+        </div>
+  <% end %>
+</div>
