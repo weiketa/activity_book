@@ -19,6 +19,6 @@ class UsersController < ApplicationController
   end
   private
     def user_params
-      params.require(:user).permit(:login,:password,:password_confirmation,:question_of_password,:answer_of_password)
+      params.require(:user).permit(:login,:password,:salt,:question_of_password,:answer_of_password)
     end
 end

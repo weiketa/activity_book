@@ -1,0 +1,35 @@
+%div
+  %h3 新用户注册
+  = form_for @user ,url:{action:'create'} do |f|
+    %div
+      %dl
+        %dt
+          =f.label '帐号'
+        %dd
+          =f.text_field :login
+      %dl
+        %dt
+          =f.label '请设置密码'
+        %dd
+          =f.text_field :password
+      %dl
+        %dt
+          =f.label '请确认密码'
+        %dd
+          =f.text_field :password_confirmation
+      %dl
+        %dt
+          =f.label '忘记密码问题'
+        %dd
+          =f.text_field :question_of_password
+      %dl
+        %dt
+          =f.label '忘记密码答案'
+        %dd
+          =f.text_field :answer_of_password
+      %p
+        =f.submit '注册'
+  %div
+    - if @user.errors.any?
+      %p
+        =@user.errors.full_messages.first
