@@ -1,7 +1,9 @@
 .row
-  .col-md-10
+  .col-md-9
     %h1
       活动通
   .col-md-1.navbar-text
-    你好
-    =flash[:notice]
+    - if current_user
+      你好,
+      = current_user.login
+      = link_to '退出',login_out_path,method: 'delete'

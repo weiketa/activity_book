@@ -2,7 +2,9 @@
   = form_for @user do |f|
     %div.jumbotron(style="position: absolute;width:400px;height:400px;left:50%;top:50%; margin-left:-200px;margin-top:-200px;border:1px" )
       %div
-        %h4 新用户注册
+        %h3 新用户注册
+        .text-right
+          =link_to '用户登录',login_path
         %table
           %tr
             %td.input-group-addon
@@ -34,6 +36,6 @@
           - if @user.errors.any?
             %div.alert.alert-danger
               =@user.errors.full_messages.first
-        %p
-          =f.submit '注册',:class => 'btn btn-default btn-block'
+        .text-center
+          =f.submit '注册',:class => 'btn btn-default'
 

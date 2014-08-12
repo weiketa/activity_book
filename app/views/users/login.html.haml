@@ -1,0 +1,26 @@
+%div
+  = form_tag 'create_login_session' do
+    %div.jumbotron(style="position: absolute;width:400px;height:300px;left:50%;top:50%; margin-left:-200px;margin-top:-150px;border:1px" )
+      %div
+        %h4 用户登录
+        .text-right
+          =link_to '用户注册',signup_path
+        %table
+          %tr
+            %td.input-group-addon
+              =label_tag '帐号'
+            %td
+              =text_field_tag :login,nil,class: 'form-control'
+          %tr
+            %td.input-group-addon
+              =label_tag '密码'
+            %td
+              =password_field_tag :password,nil,:class => 'form-control'
+        .text-right
+          =link_to '忘记密码'
+        .small
+          - if flash[:notice]
+            .alert.alert-danger
+              =flash[:notice]
+        .text-center
+          =submit_tag '登录',:class => 'btn btn-default'
