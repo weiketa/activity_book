@@ -1,35 +1,39 @@
 %div
-  %h3 新用户注册
-  = form_for @user ,url:{action:'create'} do |f|
-    %div
-      %dl
-        %dt
-          =f.label '帐号'
-        %dd
-          =f.text_field :login
-      %dl
-        %dt
-          =f.label '请设置密码'
-        %dd
-          =f.text_field :password
-      %dl
-        %dt
-          =f.label '请确认密码'
-        %dd
-          =f.text_field :password_confirmation
-      %dl
-        %dt
-          =f.label '忘记密码问题'
-        %dd
-          =f.text_field :question_of_password
-      %dl
-        %dt
-          =f.label '忘记密码答案'
-        %dd
-          =f.text_field :answer_of_password
-      %p
-        =f.submit '注册'
-  %div
-    - if @user.errors.any?
-      %p
-        =@user.errors.full_messages.first
+  = form_for @user do |f|
+    %div.jumbotron(style="position: absolute;width:400px;height:400px;left:50%;top:50%; margin-left:-200px;margin-top:-200px;border:1px" )
+      %div
+        %h4 新用户注册
+        %table
+          %tr
+            %td.input-group-addon
+              =f.label '帐号'
+            %td
+              =f.text_field :login,:class => 'form-control'
+          %tr
+            %td.input-group-addon
+              =f.label '请设置密码'
+            %td
+              =f.password_field :password,:class => 'form-control'
+          %tr
+            %td.input-group-addon
+              =f.label '请确认密码'
+            %td
+              =f.password_field :password_confirmation,:class => 'form-control'
+          %tr
+            %td.input-group-addon
+              =f.label '忘记密码问题'
+            %td
+              =f.text_field :question_of_password,:class => 'form-control'
+          %tr
+            %td.input-group-addon
+              =f.label '忘记密码答案'
+            %td
+              =f.text_field :answer_of_password,:class => 'form-control'
+
+        %p
+          - if @user.errors.any?
+            %div.alert.alert-danger
+              =@user.errors.full_messages.first
+        %p
+          =f.submit '注册',:class => 'btn btn-default btn-block'
+

@@ -10,15 +10,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user=User.new(user_params)
+    @user=User.new(params[:user])
     if @user.save
+      flash[:notice]="你好，#{@user.login}"
       redirect_to :root
     else
       render :signup
     end
   end
-  private
-    def user_params
-      params.require(:user).permit(:login,:password,:salt,:question_of_password,:answer_of_password)
-    end
+
 end
