@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'users#welcome'
   get '/signup' => 'users#signup',:as => 'signup'
   get '/login' => 'users#login',:as => 'login'
+  get 'users/user_manage' => 'users#user_manage'
   post '/create_login_session' => 'users#create_login_session'
   delete 'login_out' => 'users#login_out',:as => 'login_out'
   resources :users, only: [:create]

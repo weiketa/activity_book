@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def login_out
     session.delete(:user_id)
-    redirect_to :root
+    redirect_to :login
   end
 
   def create
@@ -34,6 +34,12 @@ class UsersController < ApplicationController
       flash[:notice]= '用户名不存在或密码错误'
       render :login
     end
+  end
+
+  def user_manage
+    @users=User.all
+    @users=User.paginate(:page => params[:page], :per_page => 10)
+
   end
 
 end

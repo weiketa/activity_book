@@ -29,7 +29,9 @@ gem 'haml-rails', '~> 0.5.3'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'protected_attributes'
-
+gem 'yaml_db'
+gem 'will_paginate', '~> 3.0'
+gem 'bootstrap-will_paginate'
 # Use unicorn as the app server
 # gem 'unicorn'
 
