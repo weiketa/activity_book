@@ -12,12 +12,15 @@ class UsersController < ApplicationController
 
   def login_out
     session.delete(:user_id)
+    session.delete(:admin_id)
     redirect_to :login
   end
 
   def create
     @user=User.new(params[:user])
-    if @user.save
+    admin=Admin.find_by_login(@user.login)
+
+    if !admin&&@user.save
       session[:user_id]=@user.id
       redirect_to :root
     else
@@ -27,6 +30,12 @@ class UsersController < ApplicationController
 
   def create_login_session
     user=User.find_by_login(params[:login])
+    admin=Admin.find_by_login(params[:login])
+
+    if admin&&admin.password==params[:password]
+        session[:admin_id]=admin.id
+        redirect_to users_user_manage_url and return
+    end
     if user && user.authenticate(params[:password])
       session[:user_id]=user.id
       redirect_to :root
@@ -39,7 +48,6 @@ class UsersController < ApplicationController
   def user_manage
     @users=User.all
     @users=User.paginate(:page => params[:page], :per_page => 10)
-
   end
 
 end
