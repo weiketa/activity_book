@@ -33,6 +33,9 @@
               =f.text_field :answer_of_password,:class => 'form-control'
 
         %p
+          - if @error
+            %div.alert.alert-danger
+              =@error
           - if @user.errors.any?
             %div.alert.alert-danger
               =@user.errors.full_messages.first

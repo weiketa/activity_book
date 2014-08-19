@@ -18,8 +18,13 @@ class UsersController < ApplicationController
 
   def create
     @user=User.new(params[:user])
+    p '***************************'
+    p @user.errors.full_messages.first
+    p '***************************'
     admin=Admin.find_by_login(@user.login)
-
+    if admin
+      @error='该帐号已注册'
+    end
     if !admin&&@user.save
       session[:user_id]=@user.id
       redirect_to :root
